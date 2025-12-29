@@ -1,0 +1,6 @@
+django
+psycopg2-binary
+django-ninja
+django-silk
+django-ninja-simple-jwt
+Pillow

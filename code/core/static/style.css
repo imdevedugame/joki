@@ -1,0 +1,88 @@
+/* ===========================
+   FUTURISTIC PURPLE THEME
+   =========================== */
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #1b0034, #4b008f, #8f3fff);
+    background-size: 300% 300%;
+    animation: gradientMove 12s ease infinite;
+    margin: 0;
+    padding: 0;
+    color: #eee4ff;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container, .py-4 {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* HEADER FUTURISTIK */
+header {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 25px rgba(150, 60, 255, 0.3);
+}
+
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.08) !important;
+    border-radius: 20px !important;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    box-shadow: 0 0 20px rgba(140, 60, 255, 0.3);
+}
+
+/* TABLE */
+table {
+    color: #f5e8ff !important;
+}
+table th {
+    background: rgba(255,255,255,0.15) !important;
+}
+table td {
+    background: rgba(255,255,255,0.05) !important;
+}
+
+/* BUTTON */
+.btn {
+    background: linear-gradient(135deg, #6a00ff, #a54bff) !important;
+    border-radius: 14px !important;
+    padding: 12px 20px !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: 0 0 15px rgba(150, 60, 255, 0.5);
+    transition: 0.25s ease;
+}
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 25px rgba(180, 90, 255, 1);
+}
+
+/* CARD TITLE COLOR */
+.card-title, h1, h2, h3 {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+
+/* FOOTER */
+footer {
+    background: rgba(255,255,255,0.1);
+    color: #eee;
+    padding: 15px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px rgba(150, 60, 255, 0.25);
+}
+
+/* SPECIFIC spacing fix untuk template kamu */
+.card-body {
+    padding: 25px !important;
+}

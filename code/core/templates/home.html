@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>e-LMS by Monica & Ajeng</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: radial-gradient(circle at top, #3d0066, #0d001a 70%);
+    color: #eee;
+    text-align: center;
+}
+
+header {
+    padding: 60px 20px;
+    background: rgba(90, 0, 140, 0.4);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 25px rgba(150, 0, 255, 0.45);
+}
+
+header h1 {
+    font-size: 2.7rem;
+    margin: 0;
+    font-weight: 600;
+    color: #e5caff;
+    text-shadow: 0 0 10px rgba(190, 128, 255, 0.7);
+}
+
+header p {
+    margin-top: 12px;
+    font-size: 1.2rem;
+    color: #cba8ff;
+}
+
+/* BUTTON GRID */
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 40px auto 0;
+}
+
+.btn {
+    background: #6a0dad;
+    padding: 15px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(120,0,255,0.4);
+}
+
+.btn:hover {
+    background: #8b22cf;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(180,70,255,0.6);
+}
+
+/* STATS CARDS */
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 50px auto;
+    max-width: 900px;
+}
+
+.stats-card {
+    background: rgba(30, 0, 60, 0.55);
+    flex: 1 1 250px;
+    min-width: 250px;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 0 20px rgba(120,0,255,0.25);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #e8d6ff;
+    text-align: center;
+}
+
+.stats-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    color: #d4a3ff;
+}
+
+.stats-card p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 70px;
+    padding: 18px;
+    background: rgba(50,0,80,0.3);
+    color: #c59eff;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+footer span {
+    color: #e2b7ff;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .btn { width: 100%; }
+    .stats-container { flex-direction: column; gap: 15px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>e-LMS Smart Learning</h1>
+    <p>Your Digital Learning Platform</p>
+</header>
+
+<main>
+    <!-- Tombol Menu -->
+    <div class="button-container">
+        <a href="/admin/" class="btn">Halaman Admin</a>
+        <a href="/courses/stat/" class="btn">Statistik Kursus</a>
+        <a href="/users/stat/" class="btn">Statistik Pengguna</a>
+        <a href="/profiling/" class="btn">Profiling (Silk)</a>
+        <a href="/admin/core/course/" class="btn">Manajemen Kursus</a>
+        <a href="/admin/core/coursecontent/" class="btn">Konten Video & File</a>
+        <a href="/admin/core/comment/" class="btn">Komentar</a>
+        <a href="/users/list/" class="btn">Daftar User</a>
+        <a href="/tugas-10/" class="btn">
+            <strong>API Course Explorer</strong><br>
+        </a>
+    </div>
+
+    <!-- Ringkasan Sistem -->
+    <div class="stats-container">
+        <div class="stats-card">
+            <h3>Total Mata Kuliah</h3>
+            <p>{{ total_courses }}</p>
+        </div>
+        <div class="stats-card">
+            <h3>Total Pengguna</h3>
+            <p>{{ total_users }}</p>
+        </div>
+        <div class="stats-card">
+            <h3>Total Komentar</h3>
+            <p>{{ total_comments }}</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    e-LMS by <span>Monica & Ajeng</span> — {{ now|date:"Y" }}
+</footer>
+
+</body>
+</html>

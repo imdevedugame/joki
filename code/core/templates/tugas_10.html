@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Course Explorer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: radial-gradient(circle at top, #3d0066, #0d001a 70%);
+    color: #eee;
+}
+
+header {
+    padding: 50px 20px;
+    text-align: center;
+    background: rgba(90, 0, 140, 0.4);
+    box-shadow: 0 0 25px rgba(150, 0, 255, 0.45);
+}
+
+header h1 {
+    margin: 0;
+    color: #e5caff;
+}
+
+header p {
+    margin-top: 10px;
+    color: #cba8ff;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.filter-box {
+    background: rgba(30, 0, 60, 0.55);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-box input,
+.filter-box select,
+.filter-box button {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-family: inherit;
+}
+
+.filter-box button {
+    background: #6a0dad;
+    color: white;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(20, 0, 40, 0.6);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+th {
+    background: rgba(120,0,255,0.3);
+}
+
+.pagination {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 8px 14px;
+    background: #6a0dad;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>API Course Explorer</h1>
+    <p>Throttling · Pagination · Filtering · Sorting</p>
+</header>
+
+<div class="container">
+
+    <!-- FILTER -->
+    <div class="filter-box">
+        <input type="text" id="search" placeholder="Cari course...">
+
+        <select id="order">
+            <option value="">Urutkan</option>
+            <option value="name">Nama (A–Z)</option>
+            <option value="-name">Nama (Z–A)</option>
+            <option value="price">Harga Termurah</option>
+            <option value="-price">Harga Termahal</option>
+        </select>
+
+        <button onclick="loadCourses()">Terapkan</button>
+    </div>
+
+    <!-- TABLE -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama Course</th>
+                <th>Deskripsi</th>
+                <th>Harga</th>
+            </tr>
+        </thead>
+        <tbody id="course-body">
+            <!-- data dari API -->
+        </tbody>
+    </table>
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+        <button onclick="prevPage()">Prev</button>
+        <span id="page-info"></span>
+        <button onclick="nextPage()">Next</button>
+    </div>
+
+</div>
+
+<script>
+let page = 1;
+
+function loadCourses() {
+    const search = document.getElementById("search").value;
+    const order = document.getElementById("order").value;
+
+    let url = `/api/courses/?page=${page}`;
+    if (search) url += `&search=${search}`;
+    if (order) url += `&order_by=${order}`;
+
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            const tbody = document.getElementById("course-body");
+            tbody.innerHTML = "";
+
+            data.items.forEach(c => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${c.id}</td>
+                        <td>${c.name}</td>
+                        <td>${c.description}</td>
+                        <td>Rp ${c.price}</td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById("page-info").innerText =
+                `Page ${page}`;
+        });
+}
+
+function nextPage() {
+    page++;
+    loadCourses();
+}
+
+function prevPage() {
+    if (page > 1) {
+        page--;
+        loadCourses();
+    }
+}
+
+loadCourses();
+</script>
+
+</body>
+</html>
